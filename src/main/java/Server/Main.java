@@ -25,8 +25,7 @@ public class Main {
         out.printf("\n");
     }
 
-    public static void main(String[] args) {
-        out.println("Server started!");
+    public static void main(String[] args){
         SQLiteDataSource dataSource = new SQLiteDataSource();
         //String address = "46.242.9.139";
         int port = 23456;
@@ -55,22 +54,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        Enumeration<NetworkInterface> nets = null;
-        try {
-            nets = NetworkInterface.getNetworkInterfaces();
-        } catch (SocketException ex) {
-            ex.printStackTrace();
-        }
-        for (NetworkInterface netint : Collections.list(nets)) {
-            try {
-                displayInterfaceInformation(netint);
-            } catch (SocketException ex) {
-                ex.printStackTrace();
-            }
-        }
-
-
-        try (ServerSocket server = new ServerSocket(port, 50, InetAddress.getByName("46.242.9.139"));) {
+        try (ServerSocket server = new ServerSocket(port, 50, InetAddress.getByName("192.168.1.157"));) {
             while (true){
 
                 Session session = new Session(server.accept());
@@ -81,6 +65,5 @@ public class Main {
         catch (Exception e){
             e.printStackTrace();
         }
-        out.println("Success");
     }
 }
